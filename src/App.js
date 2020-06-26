@@ -5,6 +5,7 @@ import CustomerForm from './components/customerForm';
 import ProductForm from "./components/productForm";
 
 function App() {
+  const [val,setVal] = useState([]);
   const [values,setValues] = useState([]);
   const handleOnFinish = (data) => {
     setValues([...values,{
@@ -17,8 +18,16 @@ function App() {
     ]);
   }
 
-  const valueSubmit = (values) => {
-    console.log(values);
+  const valueSubmit = (data) => {
+    console.log(data);
+    setVal([...val,{
+      key:val.length+1,
+      prod:data.product_name,
+      desc:data.prod_desc,
+      cat:data.category,
+      subcat:data.subcategory,
+      cost:data.cost,
+    }]);
   }
   const columns = [
     {
@@ -82,6 +91,24 @@ function App() {
       sortDirections: ['descend'],
     },
   ];
+
+  const columns1 = [
+    {
+      title:"Product Name",
+      dataIndex:'prod',
+      key:'prod',
+    },
+    {
+      title:'Product Description',
+      dataIndex:'desc',
+      key:'desc',
+    },
+    {
+      title:'Cost',
+      dataIndex:'cost',
+      key:'cost',
+    },
+  ];
   
   function onChange(pagination, filters, sorter, extra) {
     console.log('params', pagination, filters, sorter, extra);
@@ -95,6 +122,8 @@ function App() {
     <Table dataSource={values} columns={columns} onChange={onChange}/>;
     <h1>Prduct Entry</h1>
     <ProductForm handleSubmit={valueSubmit}/>
+    <h1>Product data</h1>
+    <Table dataSource={val} columns={columns1} onChange={onChange}/>;
     </React.Fragment>
   );
 }
