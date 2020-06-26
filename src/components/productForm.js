@@ -12,19 +12,33 @@ const tailLayout = {
   };
 
 const { TextArea } = Input;
+
+let tags_ ;
+
 const { Option } = Select;
 
-
-const ProductForm = () => {
+const ProductForm = ({handleSubmit}) => {
     const onFinishFailed = errorInfo => {
         console.log('Failed:', errorInfo);
       };
     const onFinish = (values) => {
-        console.log(values);
+        values.Tags = tags_;
+        values.tag = tags_;
+        handleSubmit(values);
     };
-    const initialValues = {
-        
+    const storeTag = (tags) => {
+      tags_ = tags;
+      console.log(tags_);
     }
+    const initialValues = {
+        product_name:"",
+        prod_desc:"",
+        category:"",
+        subcategory:"",
+        cost:999,
+        Tags:[]
+    }
+
     return (
         <Form
           {...layout}
@@ -51,23 +65,27 @@ const ProductForm = () => {
             autoSize={{ minRows: 2, maxRows: 6 }}/>
           </Form.Item>
           
-          <Form.Item
-            label="Category"
-            name="category"
-          >
-            <Input.Group compact>
-                <Select defaultValue="Option1-1">
-                    <Option value="Option1-1">Option1-1</Option>
-                    <Option value="Option1-2">Option1-2</Option>
-                    <Option value="Option1-3">Option1-3</Option>
-                </Select>
-                <Select defaultValue="Option2-2">
-                    <Option value="Option2-1">Option2-1</Option>
-                    <Option value="Option2-2">Option2-2</Option>
-                    <Option value="Option2-3">Option2-3</Option>
-                </Select>
-            </Input.Group>
-          </Form.Item>
+          <Form.Item name="category" label="category" rules={[{ required: true }]}>
+              <Select
+                placeholder="Select Category"
+                allowClear
+              >
+                <Option value="option-1">option-1</Option>
+                <Option value="option-2">option-2</Option>
+                <Option value="option-3">option-3</Option>
+              </Select>
+      </Form.Item>
+          
+          <Form.Item name="subcategory" label="sub-category" rules={[{ required: true }]}>
+              <Select
+                placeholder="Select Sub-Category"
+                allowClear
+              >
+                <Option value="option-1-1">option-1-1</Option>
+                <Option value="option-2-2">option-2-2</Option>
+                <Option value="option-3-3">option-3-3</Option>
+              </Select>
+      </Form.Item>
           
           <Form.Item
             label="Cost"
@@ -81,8 +99,8 @@ const ProductForm = () => {
     />
           </Form.Item>
     
-          <Form.Item name="tag" label="Tags" rules={[{ required: true,message: 'please select tag(s) for your product' }]}>
-              <EditableTagGroup />
+          <Form.Item name="tag" label="Tags" >
+              <EditableTagGroup tagRead={storeTag}/>
             
           </Form.Item>
     

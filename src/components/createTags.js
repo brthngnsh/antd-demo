@@ -5,7 +5,7 @@ import React from "react";
 
 class EditableTagGroup extends React.Component {
   state = {
-    tags: ['Tag 1'],
+    tags: [],
     inputVisible: false,
     inputValue: '',
   };
@@ -36,6 +36,7 @@ class EditableTagGroup extends React.Component {
       inputVisible: false,
       inputValue: '',
     });
+    this.props.tagRead(tags);
   };
 
   saveInputRef = input => {

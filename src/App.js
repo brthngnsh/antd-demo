@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button,Table } from 'antd';
+import { Table } from 'antd';
 import './App.css';
 import CustomerForm from './components/customerForm';
 import ProductForm from "./components/productForm";
@@ -12,12 +12,14 @@ function App() {
       fname:data.fname,
       lname:data.lname,
       address:data.address,
-      gender:data.gender
+      gender:data.gender,
     }
     ]);
   }
 
-
+  const valueSubmit = (values) => {
+    console.log(values);
+  }
   const columns = [
     {
       title: 'First Name',
@@ -92,7 +94,7 @@ function App() {
     <h1>Registry Data</h1>
     <Table dataSource={values} columns={columns} onChange={onChange}/>;
     <h1>Prduct Entry</h1>
-    <ProductForm />
+    <ProductForm handleSubmit={valueSubmit}/>
     </React.Fragment>
   );
 }

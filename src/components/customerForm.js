@@ -1,5 +1,5 @@
-import { Form, Input, Button, Checkbox,Select } from 'antd';
-import React, { useState } from "react";
+import { Form, Input, Button,Select } from 'antd';
+import React from "react";
 import  AvatarLoader  from "./avatarLoader";
 
 
@@ -10,14 +10,13 @@ const layout = {
 const tailLayout = {
   wrapperCol: { offset: 4, span: 8 },
 };
-
 const { Option } = Select;
 
 const CustomerForm = ({handleonFinish}) => {
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
-
+  
   const initialValues = {
       fname:"",
       lname:"",
