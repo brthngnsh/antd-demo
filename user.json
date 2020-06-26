@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "fname": "Barathan",
+      "lname": "Ganesh",
+      "address": "23,rv nagar,cbe-41.",
+      "phno": "7708389629",
+      "gender": "male",
+      "avatar": "",
+      "id": 1
+    }
+  ]
+}

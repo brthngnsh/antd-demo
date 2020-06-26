@@ -2,6 +2,8 @@ import { Form, Input, Button, Checkbox,Select } from 'antd';
 import React, { useState } from "react";
 import  AvatarLoader  from "./avatarLoader";
 
+const axios = require('axios');
+
 const layout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 8 },
@@ -12,13 +14,7 @@ const tailLayout = {
 
 const { Option } = Select;
 
-const CustomerForm = () => {
-  const [values,setValues] = useState({});
-  const onFinish = values => {
-    console.log('Success:', values);
-    setValues(values);
-  };
-
+const CustomerForm = ({handleonFinish}) => {
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
@@ -29,7 +25,7 @@ const CustomerForm = () => {
       address:"",
       phno:null,
       avatar:"",
-      customizeGender:""
+      gender:""
   }
 
   return (
@@ -37,7 +33,7 @@ const CustomerForm = () => {
       {...layout}
       name="basic"
       initialValues={initialValues}
-      onFinish={onFinish}
+      onFinish={handleonFinish}
       onFinishFailed={onFinishFailed}
     >
       <Form.Item
@@ -81,18 +77,6 @@ const CustomerForm = () => {
           <Option value="female">female</Option>
           <Option value="other">other</Option>
         </Select>
-      </Form.Item>
-      <Form.Item
-        noStyle
-        shouldUpdate={(prevValues, currentValues) => prevValues.gender !== currentValues.gender}
-      >
-        {({ getFieldValue }) => {
-          return getFieldValue('gender') === 'other' ? (
-            <Form.Item name="customizeGender" label="Custom Gender" rules={[{ required: true }]}>
-              <Input />
-            </Form.Item>
-          ) : null;
-        }}
       </Form.Item>
 
       <Form.Item
