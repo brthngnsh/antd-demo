@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button,Table } from 'antd';
-import { HomeFilled } from '@ant-design/icons';
 import './App.css';
 import CustomerForm from './components/customerForm';
+import ProductForm from "./components/productForm";
 
 function App() {
   const [values,setValues] = useState([]);
@@ -87,8 +87,12 @@ function App() {
 
   return (
     <React.Fragment>
+      <h1>Registration Form</h1>
     <CustomerForm handleonFinish={handleOnFinish} />
+    <h1>Registry Data</h1>
     <Table dataSource={values} columns={columns} onChange={onChange}/>;
+    <h1>Prduct Entry</h1>
+    <ProductForm />
     </React.Fragment>
   );
 }

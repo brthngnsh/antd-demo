@@ -2,7 +2,6 @@ import { Form, Input, Button, Checkbox,Select } from 'antd';
 import React, { useState } from "react";
 import  AvatarLoader  from "./avatarLoader";
 
-const axios = require('axios');
 
 const layout = {
   labelCol: { span: 4 },
